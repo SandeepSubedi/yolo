@@ -201,7 +201,12 @@ def run(
                     vid_writer[i].write(im0)
 
         # Print time (inference-only)
+       # print("rochak sedai.............................")
+
         LOGGER.info(f"{s}{'' if len(det) else '(no detections), '}{dt[1].dt * 1E3:.1f}ms")
+       # print("this is det",det)
+        type_name=s.split(" ")[-2]
+       # print("rochak sedai.............................")
 
     # Print results
     t = tuple(x.t / seen * 1E3 for x in dt)  # speeds per image
@@ -211,6 +216,7 @@ def run(
         LOGGER.info(f"Results saved to {colorstr('bold', save_dir)}{s}")
     if update:
         strip_optimizer(weights[0])  # update model (to fix SourceChangeWarning)
+    return type_name
 
 
 def parse_opt():
@@ -250,7 +256,13 @@ def parse_opt():
 
 def main(opt):
     check_requirements(exclude=('tensorboard', 'thop'))
-    run(**vars(opt))
+    type_name=run(**vars(opt))
+    type_name=type_name.split(",")
+    print(type_name[0])
+    #lines = ['Readme', 'How to write text files in Python']
+    with open('test.txt', 'a') as f:
+            f.write(type_name[0])
+            f.write('\n')
 
 
 if __name__ == "__main__":
