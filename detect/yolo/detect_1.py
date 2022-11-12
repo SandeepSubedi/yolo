@@ -260,6 +260,7 @@ def main(opt):
     #lines = ['Readme', 'How to write text files in Python']
     with open('test.txt', 'a') as f:
             f.write(type_name[0])
+            f.write(" ")
 if __name__ == "__main__":
     opt = parse_opt()
     main(opt)
